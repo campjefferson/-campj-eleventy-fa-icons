@@ -1,0 +1,19 @@
+{
+  "name": "@campj/eleventy-fa-icons",
+  "version": "0.0.3",
+  "repository": "https://github.com/campjefferson/-campj-eleventy-fa-icons.git",
+  "description": "Camp Jefferson Eleventy FontAwesome Icons",
+  "main": "index.js",
+  "keywords": [
+    "Eleventy"
+  ],
+  "author": "Camp Jefferson Dev <dev@campjefferson.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.27",
+    "@fortawesome/free-brands-svg-icons": "^5.12.1",
+    "@fortawesome/free-regular-svg-icons": "^5.12.1",
+    "@fortawesome/free-solid-svg-icons": "^5.12.1",
+    "camelcase": "^5.3.1"
+  }
+}
