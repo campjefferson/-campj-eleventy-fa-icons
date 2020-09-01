@@ -1,3 +1,6 @@
+require("intl-list-format");
+require("intl-list-format/locale-data/en");
+
 const fs = require("fs");
 const path = require("path");
 const camelCase = require("camelcase");
@@ -13,7 +16,7 @@ function _getAttrs(obj) {
   const attrKeys = Object.keys(obj);
 
   if (attrKeys.length > 0) {
-    attrs = `${attrKeys.map(key => ` ${key}="${obj[key]}"`).join("")}`;
+    attrs = `${attrKeys.map((key) => ` ${key}="${obj[key]}"`).join("")}`;
   }
   return attrs;
 }
@@ -21,20 +24,22 @@ function _getAttrs(obj) {
 function writeSvg() {
   const outputPath = `${path.resolve(process.cwd(), "./dist")}/fa-icons.svg`;
   const symbolsHtml = `${Object.keys(symbols)
-    .map(iconId => symbols[iconId])
+    .map((iconId) => symbols[iconId])
     .join(`\n`)}`;
   const output = `<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">${symbolsHtml}</svg>`;
   fs.writeFileSync(outputPath, output, `utf-8`);
 }
 
 const TYPES = ["solid", "regular", "brand"];
+
 const LIST_FORMATTER = new Intl.ListFormat("en", {
   style: "short",
-  type: "disjunction"
+  type: "disjunction",
 });
+
 const LIST_FORMATTER_TYPES = new Intl.ListFormat("en", {
   style: "short",
-  type: "conjunction"
+  type: "conjunction",
 });
 
 function getIconSet(type = "solid", canBeNull = false) {
