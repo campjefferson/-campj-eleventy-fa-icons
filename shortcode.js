@@ -21,8 +21,40 @@ function _getAttrs(obj) {
   return attrs;
 }
 
+// get path of current working directory
+const thePath = path.resolve(process.cwd());
+
+// set up possible build directory names
+const _site = "./_site";
+const dist = "./dist";
+const public = "./public";
+const build = "./build";
+
+// set up output folder
+let outputFolder;
+
+if (fs.existsSync(`${thePath}/${_site}`)) {
+  // if _site directory exists, use this for output path
+  outputFolder = _site;
+} else if (fs.existsSync(`${thePath}/${dist}`)) {
+  // if dist directory exists, use this for output path
+  outputFolder = dist;
+} else if (fs.existsSync(`${thePath}/${public}`)) {
+  // if public directory exists, use this for output path
+  outputFolder = public;
+} else if (fs.existsSync(`${thePath}/${build}`)) {
+  // if build directory exists, use this for output path
+  outputFolder = build;
+} else {
+  // none of the above match
+  console.log("Directory not found.");
+}
+
 function writeSvg() {
-  const outputPath = `${path.resolve(process.cwd(), "./dist")}/fa-icons.svg`;
+  const outputPath = `${path.resolve(
+    process.cwd(),
+    outputFolder
+  )}/fa-icons.svg`;
   const symbolsHtml = `${Object.keys(symbols)
     .map((iconId) => symbols[iconId])
     .join(`\n`)}`;
